@@ -57,14 +57,9 @@ public class Calculadora {
 	}
 
 	public static Fraccion restar(Fraccion fraccionUno, Fraccion fraccionDos) {
-		if (fraccionUno == null) {
+		if (fraccionUno == null || fraccionDos == null) {
 			throw new FraccionNulaException();
 		}
-
-		if (fraccionDos == null) {
-			throw new FraccionNulaException();
-		}
-
 		long numerador = fraccionUno.getNumerador() * fraccionDos.getDenominador()
 				- fraccionUno.getDenominador() * fraccionDos.getNumerador();
 		long denominador = fraccionUno.getDenominador() * fraccionDos.getDenominador();
@@ -72,11 +67,7 @@ public class Calculadora {
 	}
 
 	public static Fraccion multiplicar(Fraccion fraccionUno, Fraccion fraccionDos) {
-		if (fraccionUno == null) {
-			throw new FraccionNulaException();
-		}
-
-		if (fraccionDos == null) {
+		if (fraccionUno == null || fraccionDos == null) {
 			throw new FraccionNulaException();
 		}
 
@@ -86,11 +77,7 @@ public class Calculadora {
 	}
 
 	public static Fraccion dividir(Fraccion fraccionUno, Fraccion fraccionDos) {
-		if (fraccionUno == null) {
-			throw new FraccionNulaException();
-		}
-
-		if (fraccionDos == null) {
+		if (fraccionUno == null || fraccionDos == null) {
 			throw new FraccionNulaException();
 		}
 
@@ -100,12 +87,8 @@ public class Calculadora {
 	}
 
 	public static Mixto sumar(Mixto mixtoUno, Mixto mixtoDos) {
-		if (mixtoUno == null) {
-			throw new MixtoNuloException();
-		}
-
-		if (mixtoDos == null) {
-			throw new MixtoNuloException();
+		if (fraccionUno == null || fraccionDos == null) {
+			throw new FraccionNulaException();
 		}
 		Fraccion fraccionUno = convertirAFraccion(mixtoUno);
 		Fraccion fraccionDos = convertirAFraccion(mixtoDos);
@@ -116,11 +99,7 @@ public class Calculadora {
 	}
 
 	public static Mixto restar(Mixto mixtoUno, Mixto mixtoDos) {
-		if (mixtoUno == null) {
-			throw new MixtoNuloException();
-		}
-
-		if (mixtoDos == null) {
+		if (mixtoUno == null || mixtoDos == null) {
 			throw new MixtoNuloException();
 		}
 		Fraccion fraccionUno = convertirAFraccion(mixtoUno);
@@ -132,11 +111,7 @@ public class Calculadora {
 	}
 
 	public static Mixto multiplicar(Mixto mixtoUno, Mixto mixtoDos) {
-		if (mixtoUno == null) {
-			throw new MixtoNuloException();
-		}
-
-		if (mixtoDos == null) {
+		if (mixtoUno == null || mixtoDos == null) {
 			throw new MixtoNuloException();
 		}
 		Fraccion fraccionUno = convertirAFraccion(mixtoUno);
@@ -148,11 +123,7 @@ public class Calculadora {
 	}
 
 	public static Mixto dividir(Mixto mixtoUno, Mixto mixtoDos) {
-		if (mixtoUno == null) {
-			throw new MixtoNuloException();
-		}
-
-		if (mixtoDos == null) {
+		if (mixtoUno == null || mixtoDos == null) {
 			throw new MixtoNuloException();
 		}
 		
