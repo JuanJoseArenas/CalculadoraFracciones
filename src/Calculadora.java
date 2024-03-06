@@ -46,11 +46,7 @@ public class Calculadora {
 	}
 
 	public static Fraccion sumar(Fraccion fraccionUno, Fraccion fraccionDos) {
-		if (fraccionUno == null) {
-			throw new FraccionNulaException();
-		}
-
-		if (fraccionDos == null) {
+		if (fraccionUno == null || fraccionDos == null) {
 			throw new FraccionNulaException();
 		}
 
