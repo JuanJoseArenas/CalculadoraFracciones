@@ -87,7 +87,7 @@ public class Calculadora {
 	}
 
 	public static Mixto sumar(Mixto mixtoUno, Mixto mixtoDos) {
-		if (fraccionUno == null || fraccionDos == null) {
+		if (mixtoUno == null || mixtoDos == null) {
 			throw new FraccionNulaException();
 		}
 		Fraccion fraccionUno = convertirAFraccion(mixtoUno);

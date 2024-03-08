@@ -2,7 +2,7 @@
 public class Prueba {
 
 	public static void main(String[] args) {
-		Fraccion fraccionUno = Fraccion.crear(0,2);
+		Fraccion fraccionUno = Fraccion.crear(1,2);
 		Fraccion fraccionDos = Fraccion.crear(2, 2);
 		Fraccion sumaUna= Calculadora.sumar(fraccionUno,fraccionDos);
 		System.out.println(sumaUna);
