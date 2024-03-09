@@ -1,6 +1,8 @@
-import Exception.FraccionNulaException;
-import Exception.MixtoNuloException;
-import Exception.NumeroAmplificarException;
+import Exception.FraccionUnoNulaException;
+import Exception.MixtoDosNuloException;
+import Exception.MixtoUnoNuloException;
+import Exception.AmplificadorCeroException;
+import Exception.FraccionDosNulaException;
 
 public class Calculadora {
 
@@ -9,87 +11,119 @@ public class Calculadora {
 	}
 
 	private static long minimoComunDivisor(Fraccion fraccion) {
-		if(fraccion ==  null) {
-			throw new FraccionNulaException();
+		if (UtilObjeto.isNull(fraccion)) {
+			throw new FraccionUnoNulaException();
 		}
 
 		long numerador = fraccion.getNumerador();
 		long denominador = fraccion.getDenominador();
+
 		while (denominador != 0) {
-			long aux = denominador;
+			long auxiliar = denominador;
 			denominador = numerador % denominador;
-			numerador = aux;
+			numerador = auxiliar;
 		}
+
 		return numerador;
 	}
 
 	private static Fraccion simplificar(Fraccion fraccion) {
-		if (fraccion == null) {
-			throw new FraccionNulaException();
+		if (UtilObjeto.isNull(fraccion)) {
+			throw new FraccionUnoNulaException();
 		}
+
 		long numerador = fraccion.getNumerador() / minimoComunDivisor(fraccion);
 		long denominador = fraccion.getDenominador() / minimoComunDivisor(fraccion);
+
 		return Fraccion.crear(numerador, denominador);
 	}
 
 	public static Fraccion amplificar(Fraccion fraccion, long factor) {
-		if (fraccion == null) {
-			throw new FraccionNulaException();
+		if (UtilObjeto.isNull(fraccion)) {
+			throw new FraccionUnoNulaException();
 		}
+
 		if (factor == 0) {
-			throw new NumeroAmplificarException();
+			throw new AmplificadorCeroException();
 		}
 
 		long nuevoNumerador = fraccion.getNumerador() * factor;
 		long nuevoDenominador = fraccion.getDenominador() * factor;
+
 		return simplificar(Fraccion.crear(nuevoNumerador, nuevoDenominador));
 	}
 
 	public static Fraccion sumar(Fraccion fraccionUno, Fraccion fraccionDos) {
-		if (fraccionUno == null || fraccionDos == null) {
-			throw new FraccionNulaException();
+		if (UtilObjeto.isNull(fraccionUno)) {
+			throw new FraccionUnoNulaException();
+		}
+
+		if (UtilObjeto.isNull(fraccionDos)) {
+			throw new FraccionDosNulaException();
 		}
 
 		long numerador = fraccionUno.getNumerador() * fraccionDos.getDenominador()
 				+ fraccionUno.getDenominador() * fraccionDos.getNumerador();
 		long denominador = fraccionUno.getDenominador() * fraccionDos.getDenominador();
+
 		return simplificar(Fraccion.crear(numerador, denominador));
 	}
 
 	public static Fraccion restar(Fraccion fraccionUno, Fraccion fraccionDos) {
-		if (fraccionUno == null || fraccionDos == null) {
-			throw new FraccionNulaException();
+		if (UtilObjeto.isNull(fraccionUno)) {
+			throw new FraccionUnoNulaException();
 		}
+
+		if (UtilObjeto.isNull(fraccionDos)) {
+			throw new FraccionDosNulaException();
+		}
+
 		long numerador = fraccionUno.getNumerador() * fraccionDos.getDenominador()
 				- fraccionUno.getDenominador() * fraccionDos.getNumerador();
 		long denominador = fraccionUno.getDenominador() * fraccionDos.getDenominador();
+
 		return simplificar(Fraccion.crear(numerador, denominador));
 	}
 
 	public static Fraccion multiplicar(Fraccion fraccionUno, Fraccion fraccionDos) {
-		if (fraccionUno == null || fraccionDos == null) {
-			throw new FraccionNulaException();
+		if (UtilObjeto.isNull(fraccionUno)) {
+			throw new FraccionUnoNulaException();
+		}
+
+		if (UtilObjeto.isNull(fraccionDos)) {
+			throw new FraccionDosNulaException();
 		}
 
 		long numerador = fraccionUno.getNumerador() * fraccionDos.getNumerador();
 		long denominador = fraccionUno.getDenominador() * fraccionDos.getDenominador();
+
 		return simplificar(Fraccion.crear(numerador, denominador));
 	}
 
 	public static Fraccion dividir(Fraccion fraccionUno, Fraccion fraccionDos) {
-		if (fraccionUno == null || fraccionDos == null) {
-			throw new FraccionNulaException();
+		if (UtilObjeto.isNull(fraccionUno)) {
+			throw new FraccionUnoNulaException();
+		}
+
+		if (UtilObjeto.isNull(fraccionDos)) {
+			throw new FraccionDosNulaException();
 		}
 
 		long numerador = fraccionUno.getNumerador() * fraccionDos.getDenominador();
 		long denominador = fraccionUno.getDenominador() * fraccionDos.getNumerador();
+
 		return simplificar(Fraccion.crear(numerador, denominador));
 	}
 
 	public static Mixto sumar(Mixto mixtoUno, Mixto mixtoDos) {
-		if (mixtoUno == null || mixtoDos == null) {
-			throw new FraccionNulaException();
+		if (UtilObjeto.isNull(mixtoUno)) {
+			throw new MixtoUnoNuloException();
 		}
+
+		if (UtilObjeto.isNull(mixtoDos)) {
+			throw new MixtoDosNuloException();
+		}
+
 		Fraccion fraccionUno = convertirAFraccion(mixtoUno);
 		Fraccion fraccionDos = convertirAFraccion(mixtoDos);
 
@@ -99,9 +133,14 @@ public class Calculadora {
 	}
 
 	public static Mixto restar(Mixto mixtoUno, Mixto mixtoDos) {
-		if (mixtoUno == null || mixtoDos == null) {
-			throw new MixtoNuloException();
+		if (UtilObjeto.isNull(mixtoUno)) {
+			throw new MixtoUnoNuloException();
 		}
+
+		if (UtilObjeto.isNull(mixtoDos)) {
+			throw new MixtoDosNuloException();
+		}
+
 		Fraccion fraccionUno = convertirAFraccion(mixtoUno);
 		Fraccion fraccionDos = convertirAFraccion(mixtoDos);
 
@@ -111,9 +150,14 @@ public class Calculadora {
 	}
 
 	public static Mixto multiplicar(Mixto mixtoUno, Mixto mixtoDos) {
-		if (mixtoUno == null || mixtoDos == null) {
-			throw new MixtoNuloException();
+		if (UtilObjeto.isNull(mixtoUno)) {
+			throw new MixtoUnoNuloException();
 		}
+
+		if (UtilObjeto.isNull(mixtoDos)) {
+			throw new MixtoDosNuloException();
+		}
+
 		Fraccion fraccionUno = convertirAFraccion(mixtoUno);
 		Fraccion fraccionDos = convertirAFraccion(mixtoDos);
 
@@ -123,10 +167,13 @@ public class Calculadora {
 	}
 
 	public static Mixto dividir(Mixto mixtoUno, Mixto mixtoDos) {
-		if (mixtoUno == null || mixtoDos == null) {
-			throw new MixtoNuloException();
+		if (UtilObjeto.isNull(mixtoUno)) {
+			throw new MixtoUnoNuloException();
 		}
-		
+
+		if (UtilObjeto.isNull(mixtoDos)) {
+			throw new MixtoDosNuloException();
+		}
 		Fraccion fraccionUno = convertirAFraccion(mixtoUno);
 		Fraccion fraccionDos = convertirAFraccion(mixtoDos);
 
@@ -136,31 +183,30 @@ public class Calculadora {
 	}
 
 	public static Mixto convertirAMixto(Fraccion fraccionUno) {
-		if (fraccionUno == null) {
-			throw new FraccionNulaException();
+		if (UtilObjeto.isNull(fraccionUno)) {
+			throw new FraccionUnoNulaException();
 		}
-		
+
 		long parteEntera = fraccionUno.getNumerador() / fraccionUno.getDenominador();
 		long numerador = fraccionUno.getNumerador() % fraccionUno.getDenominador();
 		long denominador = fraccionUno.getDenominador();
+
 		return Mixto.crear(parteEntera, numerador, denominador);
 	}
 
 	public static Fraccion convertirAFraccion(Mixto fraccionMixta) {
-		if (fraccionMixta == null) {
-			throw new MixtoNuloException();
+		if (UtilObjeto.isNull(fraccionMixta)) {
+			throw new MixtoUnoNuloException();
 		}
 		long numerador = (fraccionMixta.getParteEntera() * fraccionMixta.getDenominador())
 				+ fraccionMixta.getNumerador();
 		long denominador = fraccionMixta.getDenominador();
+
 		return Fraccion.crear(numerador, denominador);
 	}
 
 	public static boolean esPropia(Fraccion fraccionUno) {
-		if(fraccionUno.getNumerador() < fraccionUno.getDenominador()) {
-			return true;
-		}
-		return false;
+		return (fraccionUno.getNumerador() < fraccionUno.getDenominador());
 	}
 
 }
