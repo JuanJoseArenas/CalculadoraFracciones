@@ -43,7 +43,7 @@ public class Calculadora {
 			throw new FraccionUnoNulaException();
 		}
 
-		if (factor == 0) {
+		if (UtilObjeto.isCero(factor)) {
 			throw new AmplificadorCeroException();
 		}
 

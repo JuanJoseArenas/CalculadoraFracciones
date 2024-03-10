@@ -3,10 +3,10 @@ public class Prueba {
 
 	public static void main(String[] args) {
 		Fraccion fraccionUno = Fraccion.crear(1,2);
-		Fraccion fraccionDos = Fraccion.crear(2, 2);
+		Fraccion fraccionDos = Fraccion.crear(3, 5);
 		Fraccion sumaUna= Calculadora.sumar(fraccionUno,fraccionDos);
 		System.out.println(sumaUna);
-		System.out.println(Calculadora.amplificar(sumaUna, 3));
+		System.out.println(Calculadora.amplificar(sumaUna, 1));
 		
 		Mixto mixtoUno = Mixto.crear(45, 1, 3);
 		Mixto mixtoDos = Mixto.crear(3, 2, 5);

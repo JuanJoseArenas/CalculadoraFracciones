@@ -7,4 +7,8 @@ public final class UtilObjeto {
 		return objeto == null;
 	}
 	
+	public static boolean isCero(long factor) {
+        return factor==0;
+    }
+
 }
